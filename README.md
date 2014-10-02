@@ -1,24 +1,31 @@
 emberjs-experiment
 ==================
 
-This is an experimental project and here I recreate the TodoMVC to demonstrate the possibility to ease Ember development and production workflow with SystemJS and jspm.
+This is an experimental project and here I recreate the [TodoMVC](http://www.cubicleapps.com/articles/todo-mvc-with-ember-cli-part-1) to demonstrate the possibility to ease Ember development and production workflow with [SystemJS](https://github.com/systemjs/systemjs) and [jspm](http://jspm.io).
 
 How to get started
 ---
 
 * Install **jspm** via npm:
 
-```
-npm install -g jspm
-```
+`npm install -g jspm`
 
 * Install vendor packages via jspm at the same location as `config.js`:
 
-```
-jspm install
-```
+`jspm install`
 
-* Enbale local XHR request.
+* Install express server via npm
+
+`npm install`
+
+* Launch
+
+`node server.js` or `npm start`
+
+The following about local XHR request only apply if you are NOT running from a local server. 
+Launching via `node server.js` you should be able to ignore this...
+
+* Enable local XHR request.
 
    As seen [here](https://github.com/systemjs/systemjs#basic-configuration)
 
@@ -28,6 +35,21 @@ jspm install
 
    > _In Firefox this requires navigating to `about:config`, entering `security.fileuri.strict_origin_policy` in the filter box and toggling the option to false._
 
+
+Information
+---
+
+This project uses a custom ember "namespace" resolver that which can be found in `app/resolver.js`. It extends the `Ember.DefaultResolver` with specific methods which use the `System` API to parse, normalize and resolve modules based on path and name.
+
+```javascript
+  ...
+  if (System.has('app/' + type + 's/' + normalizedName)) {
+    return type + ":" + normalizedName;
+  }
+  ...
+```
+
+Please also chck out this [video](https://www.youtube.com/watch?v=lc9nQJR6RX4) on how to use *jspm* with Ember, especially the last 10 minutes of the video are key.
 
 More Information
 ---

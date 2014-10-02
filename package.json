@@ -1,9 +1,14 @@
 {
+  "scripts": {
+    "start": "node server.js"
+  },  
+  "dependencies": {
+    "express": "4.9.0"
+  },
   "jspm": {
     "directories": {
       "jspmPackages": "vendor"
     },
-    "registry": "jspm",
     "dependencies": {
       "ember": "^1.6.1",
       "ember-data": "^1.0.0-beta.8"
